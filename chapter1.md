@@ -26,11 +26,15 @@
 
 지금부터 그 과정을 한 번 살펴보도록 하자. 먼저 로그에 명령들을 저장하고 모든 로그가 동일한 순서로 동일한 명령을 가지고 있는지 확인한다. 그 후  로그에 있는 명령을 처리하고 작업을 진행한다. \(단, 각 상태 머신이 모두 동일한 작업을 수행하는지는 우리가 보장하지 못한다.\)
 
-클라이언트가 상태 머신에서 명령을 실행하려고 할 때 시스템이 작동하는 방법은 다음과 같다. 먼저 실행하고자 하는 명령을 서버 중 하나에 전송한다.
+클라이언트가 상태 머신에서 명령을 실행하려고 할 때 시스템이 작동하는 방법은 다음과 같다. \(위 템플릿의 그림 부분을 보면서 Consensus Module을 살펴보자\) 먼저 실행하고자 하는 명령을 서버 중 하나에 전송한다. 전송된 명령은 위의 템플릿 중 Log의 가장 우측에 있는 'shl' 명령어다. 전송을 받은 서버는 해당 명령을 자신의 로컬 로그에 저장하고 다른 서버들에게 해당 내용을 전파한다. 마찬가지로 다른 서버들 또한 받은 정보를 자신만의 로컬 로그에 저장해 둔다.
 
+명령어가 안전하게 모든 로그들에 저장된 것이 확인된다면 그 다음으로 명령어의 실행을 위해 상태 머신에게 명령어 정보를 넘긴다. 
 
+> Let's suppose the command is 'shl' that server records the command in its own local log and then passes the command to other servers and each of them records the command in its log.
+>
+> once the command has been safely replicated in all of the logs then it can be passed to the state machines for execution.
 
-
+받은 정보를 토대로 상태 머신이 해당 명령어를 실행하면, 그 결과값이 비로소 클라이언트에게 돌아갈 수 있게 된다. 모든 머신이 갖고 있는 로그들이 동일하고 상태 머신들이 해당 명령들을 순서대로 잘 처리하기만 한다면 각 상태 머신들은 동일하게 작동한다는 걸 확인할 수 있다.
 
 
 
