@@ -1,3 +1,6 @@
-# First Chapter
+# 팍소스 알고리즘
 
-GitBook allows you to organize your book into chapters, each chapter is stored in a separate file like this one.
+---
+
+팍소스 알고리즘은 분산컴퓨팅의 아버지라 불리는 레슬리 램포트\(Leslie Lamport\)에 의해 만들어졌습니다.  
+
