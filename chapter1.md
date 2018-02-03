@@ -12,13 +12,25 @@
 
 > when I say state machine, I just mean a program or application that takes inputs and produces outputs and hold some internal state. so you can think of almost any program or application as a state machine.
 
-
-
 이제 본격적인 아이디어에 대해 소개하고자 한다. 만약 우리가 신뢰성이 높은 상태 머신을 만든다고 해보자. 신뢰성이 높은 상태 머신을 만들기 위해 우리가 사용하고 싶은 방법은** 같은 상태정보를 가진 머신**들이 **각기 다른 서버에서 동시다발적으로 실행**되게끔 만드는 것이다.
 
 또한 각 상태 머신에게 우리가 기계에게 내리고 싶은 **명령들을 같은 내용과 같은 순서로** 각 상태머신에게 줬을 때, 각 상태 머신은 우리가 내린 명령들을 순서대로 틀리지 않고 그대로 잘 수행해줄 것이며 똑같은 동작과 같은 출력을 만들어내게끔 우리는 상태머신을 만드려 한다.
 
 > The idea is that we would like to make a state machine highly reliable and the way we would like to do that is by having the same state machine run concurrently on several different servers and if each of those state machines receives the same set of commands in the same order, then they should all behave identically and produce the same results.
+
+만약 위와 같이 설계만 된다면 몇몇 기계들에 결함이 생겨도 다른 기계들이 내가 원하는 작업을 똑같이 수행할 수 있으니 별 문제가 발생하지 않는다. 매우 바람직하고 꿈만 같은 일이다.
+
+**분산화되어 있는 각 상태머신**들이 **동일한 내용의 작업을 같은 순서로 실행**하게 만드는 것이 바로 **복제 로그의 최종 목표**다. 각 상태 머신들이 각자 받은 명령을 같은 순서로 정확하게 수행하는 것.
+
+![](/assets/0.PNG)
+
+지금부터 그 과정을 한 번 살펴보도록 하자. 먼저 로그에 명령들을 저장하고 모든 로그가 동일한 순서로 동일한 명령을 가지고 있는지 확인한다. 그 후  로그에 있는 명령을 처리하고 작업을 진행한다. \(단, 각 상태 머신이 모두 동일한 작업을 수행하는지는 우리가 보장하지 못한다.\)
+
+클라이언트가 상태 머신에서 명령을 실행하려고 할 때 시스템이 작동하는 방법은 다음과 같다. 먼저 실행하고자 하는 명령을 서버 중 하나에 전송한다.
+
+
+
+
 
 
 
