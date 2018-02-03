@@ -1,3 +1,10 @@
-# My Awesome Book
+# Paxos Algorithm Lecture Note \(팍소스 알고리즘 강의노트 By wisecow\)
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+---
+
+본 강의노트는 유튜브에 업로드 되어 있는 [Paxos lecture](https://www.youtube.com/watch?v=JEpsBg0AO6o&t=1871s&list=LLre8TRULW2293T7wD0ZQu3g&index=5) 강의를 수강하고난 후 작성한 강의노트입니다. 한국에 팍소스 알고리즘 관련 자료가 매우 부족하여 공부하는데 애를 먹었습니다. 후에 팍소스 알고리즘을 개인적으로 공부하시는 분들에게 도움이 되고자 위의 강의를 수강한 후 강의내용을 정리하였습니다.
+
+기본적으로 강의에서 나오는 내용들의 번역과 해설에 비중을 뒀습니다. 꼭 필요하다고 생각되는 강사의 언급은 별도로 영어문장으로 해설 하단에 작성되어 있으니 번역된 내용이 어색하거나 원문을 보고싶은 분들은 참고하시면 좋을 것 같습니다.
+
+
+
