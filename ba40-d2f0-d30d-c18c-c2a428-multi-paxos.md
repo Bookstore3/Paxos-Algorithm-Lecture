@@ -8,7 +8,7 @@
 >
 > So to do this, we just add extra argument to each of the prepare and accept request that selects particular log entry and all of the servers keep separate state for every entry into the log.
 
-
+![](/assets/Multi Paxos 1.PNG)
 
 
 
