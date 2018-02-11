@@ -8,31 +8,5 @@
 >
 > So to do this, we just add extra argument to each of the prepare and accept request that selects particular log entry and all of the servers keep separate state for every entry into the log.
 
-![](/assets/Multi Paxos 1.PNG)위 그림은 요청을 하면 발생하는 과정을 보여주고 있다. 첫번째로 클라이언트가 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![](/assets/Multi Paxos 1.PNG)위 그림은 요청을 하면 발생하는 과정을 보여주고 있다. 첫번째로 클라이언트가 상태 머신이 실행 시켜 주었으면 하는 **명령**을 서버 중 하나의 팍소스 모듈에게 보낸다. 그럼 그 모듈은 팍소스 프로토콜을 통해 다른 서버들과 소통해 합의를 이끌어내고 클라이언트의 명령이 로그 중 하나의 항목으로 들어갈 수 있게 만들어 준다. 그 후에 로그에 들어간 명령을 상태 머신에 적용하게 되는데 이때 들어간 명령 앞에 있던 다른 명령들이 먼저 로그에 기록되고 상태 머신에 적용되기를 기다린다. 이렇게 상태 머신에 새 명령어가 적용이 되면 그 결과를 클라이언트한테 알려준다.
 
