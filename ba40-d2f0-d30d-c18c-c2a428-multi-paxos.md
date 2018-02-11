@@ -8,7 +8,31 @@
 >
 > So to do this, we just add extra argument to each of the prepare and accept request that selects particular log entry and all of the servers keep separate state for every entry into the log.
 
-![](/assets/Multi Paxos 1.PNG)
+![](/assets/Multi Paxos 1.PNG)위 그림은 요청을 하면 발생하는 과정을 보여주고 있다. 첫번째로 클라이언트가 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
