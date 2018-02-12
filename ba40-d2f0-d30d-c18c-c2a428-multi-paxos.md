@@ -118,5 +118,5 @@ Prepare를 하는 두번째 이유인 로그 항목의 값에 대해 알아내�
 
 ![](/assets/Multi Paxos 8.PNG)
 
-세번째 단계로는 Proposer 서버가 Acceptor 서버들에게 선택 완료된 것으로 알려진 항목들에 대한 정보를 알려주는 것이다.
+세번째 단계로는 Proposer 서버가 Acceptor 서버들에게 선택 완료된 것으로 알려진 항목들에 대한 **정보**를 알려주는 것이다. Proposer 서버는 이런 정보를 Accept RPC를 보낼때 어떤것이 선택된 항목인지에 대한 정보를 같이 껴서 보내는 방식으로 알려준다. 이때 보내는 정보에는 **firstUnchosenIndex**가 들어가는데 Acceptor는 이 번호를 보고 이 번호 밑에 항목들은 Proposer에 의해 선택 완료가 되었다는 것을 알 수가 있게 된다.
 
