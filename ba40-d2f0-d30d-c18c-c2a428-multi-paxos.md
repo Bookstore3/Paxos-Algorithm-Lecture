@@ -108,5 +108,5 @@ Prepare를 하는 두번째 이유인 로그 항목의 값에 대해 알아내�
 
 ![](/assets/Multi Paxos 7.PNG)
 
-
+이러한
 
