@@ -1,4 +1,4 @@
-# Paxos Algorithm Lecture Note \(팍소스 알고리즘 강의노트 By wisecow\)
+# Paxos Algorithm Lecture Note \(팍소스 알고리즘 강의노트\)
 
 ---
 
