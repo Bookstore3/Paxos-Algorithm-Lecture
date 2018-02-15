@@ -100,7 +100,7 @@ Prepare을 하는 첫 번째 이유인 오래된 제안을 막는 방식을 **�
 
 Prepare를 하는 두번째 이유인 로그 항목의 값에 대해 알아내는 방식은 여전히 Proposer가 물어본 항목이 받은 가장 높은 제안 번호를 반환 하지만 또한 Acceptor는 현재 받은 요청 이후의 로그들을 보고 현재의 요청 이후에 어떠한 인정된\(Accepted\) 값들이 없다면, 즉 본인이 보낸 요청한 값을 인정\(Accept\)한 것 이라면, **noMoreAccepted 라는 신호도 같이 **반환 하게 된다.
 
-결국에 리더는 각각의 Acceptor 서버로부터 noMoreAccepted를 받는 시점이 있을 것이며, 그럼 그 Acceptor의 상태를 리더가 알고 됨으로서 더 이상 Prepare을 그 Acceptor에게 보낼 필요가 없는 것이다. 더 나아가, 이러한 noMoreAccepted 신호를 절반 이상의 서버들에게서 받으면 더이상 Prepare RPC를 할 필요가 없어진다. 그럼 이제 리더는 Accept RPC를 모든 서버에게 한번만 보내면 모든 준비는 끝이 났기때문에 리더가 요청한 값이 선택 완료가 되어진다.
+결국에 리더는 각각의 Acceptor 서버로부터 noMoreAccepted를 받는 시점이 있을 것이며, 그럼 그 Acceptor의 상태를 리더가 알게됨으로써 더 이상 Prepare을 그 Acceptor에게 보낼 필요가 없는 것이다. 더 나아가, 이러한 noMoreAccepted 신호를 절반 이상의 서버들에게서 받으면 더이상 Prepare RPC를 할 필요가 없어진다. 그럼 이제 리더는 Accept RPC를 모든 서버에게 한번만 보내면 모든 준비는 끝이 났기때문에 리더가 요청한 값이 선택 완료가 되어진다.
 
 이러한 현상은 리더가 변경이 될 때까지 계속 될 것이며 변경이 되면 리더의 Accept RPC가 거절 될 것이고 다시 처음부터 진행을 하게 될 것이다.
 
@@ -224,7 +224,5 @@ Prepare를 하는 두번째 이유인 로그 항목의 값에 대해 알아내�
 
 ## Paxos 마감
 
-이상으로 Paxos lecture의 강의 정리를 모두 마친다. Basic 팍소스는 Wise Cow가 Multi 팍소스는 Bookstore3가 작성을 담당했다. 
-
-
+이상으로 Paxos lecture의 강의 정리를 모두 마친다. Basic 팍소스는 Wise Cow가 Multi 팍소스는 Bookstore3가 작성을 담당했다.
 
