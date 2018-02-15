@@ -8,7 +8,7 @@
 
 > I'm going to explain Paxos in the context of creating a replicated log and then we'll use the replicated log to create a replicated state machine.
 
-강의 도중 언급되는 상태 머신\(혹은 유한 상태 기계\)은 단순히 프로그램 혹은 어플리케이션이라고 생각하면 된다. 단, 입력을 필요로 하고 이 입력으로부터 출력이 생성되며 기계 내 상태 정보를 저장할 수 있어야 한다. 단순히 프로그램 또는 어플리케이션 이라고 생각해도 무방하다.
+강의 도중 언급되는 상태 머신\(혹은 유한 상태 기계\)은 단순히 프로그램 혹은 어플리케이션이라고 생각하면 된다. 단, 입력을 필요로 하고 이 입력으로부터 출력이 생성되며 기계 자체의 상태 정보를 저장할 수 있어야 한다. 단순히 프로그램 또는 어플리케이션 이라고 생각해도 무방하다.
 
 > when I say state machine, I just mean a program or application that takes inputs and produces outputs and hold some internal state. so you can think of almost any program or application as a state machine.
 
@@ -39,8 +39,6 @@
 로그가 제대로 복제되었는지를 확인하는 것이 **컨센서스 모듈\(합의 모듈\)의 역할이**다. 우리가 팍소스를 공부하는 이유기도 하다.
 
 컨센서스를 기반으로 한 접근 방식의 가장 중요한 핵심은 시스템이 대부분의 서버가 정상 작동하는 한 모든 서비스를 제공할 수 있다는 것이다. 우리가 5개의 서버로 이루어진  클러스터\(군집\)를 갖고 있다면, 클러스터 중 3개의 서버가 정상 작동하는 한 서비스 제공에는 아무 문제가 없다. 즉, 클러스터 중 2개의 서버가 다운되는 상황을 견딜 수 있는 것이다. 일반적으로 클러스터\(cluster\)의 사이즈는 3, 5 또는 7과 같은 작은 홀수이다.
-
-
 
 ## 팍소스 알고리즘의 failure model
 
