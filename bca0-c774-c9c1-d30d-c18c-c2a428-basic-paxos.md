@@ -168,13 +168,17 @@ S1은 red를 제안하려 한다. 그렇지만** 2-phase protocol**을 적용해
 
 **수령자\(acceptor\)가 해야할 두번째 작업**은 **이전에 인정\(accept\) 됐을 수도 있는 제안에 대한 모든 정보를 반환**하는 것이다. 만약 이전에 어떤 제안을 인정\(accept0했었다면, 수령자는 자신이 수령한 값\(accepted value\)과 수령한 제안번호\(number of proposal\)을 저장하고 있다. **지금까지 저장한 값들 중 가장 높은 제안번호를 가지고 있는 정보를 반환**한다.
 
-제안자는 대다수의 수령자들로부터 응답이 올 때까지 기다린다. 수령자들로부터 응답을 받았다면, 제안자는 수령자가 이전에 수령했던 제안\(accepted proposal\)이 있었는지 확인한다. 만약 있었다면, 수령자들이 응답한 제안들의 번호를 한 번 더 비교해서 가장 높은 제안번호를 가진 제안을 고른다.
+**제안자\(proposer\)는 대다수의 수령자\(majority of acceptors\)들로부터 응답이 올 때까지 기다린다.** 수령자들로부터 응답을 받았다면, 제안자는 수령자가 **이전에 인정했던 제안\(accepted proposal\)이 있었는지 확인**한다. 만약 있었다면, **수령자들이 응답한 제안들의 번호를 한 번 더 비교해서 가장 높은 제안번호를 가진 제안을 고른다.**
 
-그리고 제안자 본인이 처음에 사용했던 제안번호\(n\)을 버리고 수령자들이 보낸 응답으로부터 추출한 가장 큰 제안번호를 자신의 제안 번호로 사용한다. 만약 수령자들로부터 기존에 제안이 있었다는 응답이 없었다면 자신이 원래 가지고 있던 제안번호\(n\)을 가지고 다음 단계로 진행하게 된다. 이로써 첫번째 phase가 끝나게 된다.
+그리고 **제안자 본인이 처음에 제안했던 제안 값\(value\)을 포기**하고 **수령자들이 보낸 응답으로부터 추출한 가장 큰 제안번호에 담겨 있는 제안 값\(value\)을 자신의 제안 값\(value\)으로 사용**한다\(**제안자는 value의 선택완료를 위해 계속 작업할 것**이다\). 만약 수령자들로부터 기존에 제안이 있었다는 응답이 없었다면 **자신이 원래 가지고 있던 제안번호\(value\)을 가지고 다음 단계로 진행**하게 된다. 이로써 첫번째 phase가 끝나게 된다.
 
-이제 제안자가 Accept RPC를 브로드캐스팅하는 두번째 phase로 넘어가보자. Accept RPC는 두 가지 값을 포함하고 있는데, 첫번째 값은 제안번호이다. 이 제안번호는 반드시 Prepare message로부터 왔던 번호\(n\)과 같아야 한다. 두번째로 포함하고 있는 것은 제안자가 시작했던 값\(value\) 혹은 수령자로부터 온 응답안에 있는 값\(value\)이다.
+이제** 제안자가 Accept RPC를 브로드캐스팅하는 두번째 phase**로 넘어가보자. **Accept RPC는 두 가지 값을 포함**하고 있는데, 첫번째 값은 제안번호이다. 이 제안번호는 반드시 Prepare message로부터 왔던 제안번호\(n\)와 같아야 한다. **두번째로 포함하고 있는 것**은 **제안자가 시작했던 값\(value\)** 혹은 **수령자로부터 온 응답안에 있던 값\(value\)**이다.
 
-이 Accept 메시지는 클러스터 내의 모든 수령자에게 전송되며 수령자들은 이 메시지들을 비교하게 된다.  도착한 제안번호가 minProposal 보다 크지 않다면 지금 온 제안은 거절당한다. 반대로 minProposal보다 크다면 수령자는 제안을 수령하게 된다. 수령한다는 건 받아들인 제안의 제안번호와 값을 기억한다는 것이다.
+> And the Accept RPC contains two values. first it contains a Proposal Number and this must be the same as the Proposal Number from the Prepare message and in addition it includes the Value either the initial Value the Proposer started with or an Accepted Value that it received back from an Acceptor.
+
+이 Accept 메시지는 클러스터 내의 모든 수령자에게 전송되며 수령자들은 이 메시지를 처리하게 된다. 처리하는 방식은 간단하다. 받은 제안의 제안번호가 수령자\(acceptor\)가 기존에 갖고 있던 minProposal 보다 작다면\(n &lt; minProposal\) 지금 온 제안은 거절당한다. 반대로 minProposal보다 크거나 같다면\(n &gt;= minProposal\) 수령자\(acceptor\)는 제안을 수령하게 된다. 수령한다는 건 받아들인 제안의 제안번호와 값을 기억한다는 것이다.
+
+
 
 ... \(작성 미완료\)
 
