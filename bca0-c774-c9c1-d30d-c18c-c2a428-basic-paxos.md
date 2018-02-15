@@ -166,7 +166,9 @@ S1은 red를 제안하려 한다. 그렇지만** 2-phase protocol**을 적용해
 
 > if we haven't already made a promise to somebody else not to accept proposals of this size so this is the highest proposal we've seen so far then we update minProposal to keep track of that.
 
-**수령자\(acceptor\)가 해야할 두번째 작업**은 **이전에 인정\(accept\) 됐을 수도 있는 제안에 대한 모든 정보를 반환**하는 것이다. 만약 이전에 어떤 제안을 인정\(accept0했었다면, 수령자는 자신이 수령한 값\(accepted value\)과 수령한 제안번호\(number of proposal\)을 저장하고 있다. **지금까지 저장한 값들 중 가장 높은 제안번호를 가지고 있는 정보를 반환**한다.
+**수령자\(acceptor\)가 해야할 두번째 작업**은 **이전에 인정\(accept\) 됐을 수도 있는 제안에 대한 모든 정보를 반환**하는 것이다. 만약 이전에 어떤 제안을 인정\(accept\)했었다면, 수령자는 자신이 수령한 값\(accepted value\)과 수령한 제안번호\(number of proposal\)을 저장하고 있다. **지금까지 저장한 값들 중 가장 높은 제안번호를 가지고 있는 정보를 반환**한다.
+
+![](/assets/13.PNG)
 
 **제안자\(proposer\)는 대다수의 수령자\(majority of acceptors\)들로부터 응답이 올 때까지 기다린다.** 수령자들로부터 응답을 받았다면, 제안자는 수령자가 **이전에 인정했던 제안\(accepted proposal\)이 있었는지 확인**한다. 만약 있었다면, **수령자들이 응답한 제안들의 번호를 한 번 더 비교해서 가장 높은 제안번호를 가진 제안을 고른다.**
 
@@ -176,11 +178,11 @@ S1은 red를 제안하려 한다. 그렇지만** 2-phase protocol**을 적용해
 
 > And the Accept RPC contains two values. first it contains a Proposal Number and this must be the same as the Proposal Number from the Prepare message and in addition it includes the Value either the initial Value the Proposer started with or an Accepted Value that it received back from an Acceptor.
 
-이 Accept 메시지는 클러스터 내의 모든 수령자에게 전송되며 수령자들은 이 메시지를 처리하게 된다. 처리하는 방식은 간단하다. 받은 제안의 제안번호가 수령자\(acceptor\)가 기존에 갖고 있던 minProposal 보다 작다면\(n &lt; minProposal\) 지금 온 제안은 거절당한다. 반대로 minProposal보다 크거나 같다면\(n &gt;= minProposal\) 수령자\(acceptor\)는 제안을 수령하게 된다. 수령한다는 건 받아들인 제안의 제안번호와 값을 기억한다는 것이다.
+이 Accept 메시지는 클러스터 내의 모든 수령자에게 전송되며 수령자들은 이 메시지를 처리하게 된다. 처리하는 방식은 간단하다. **받은 제안의 제안번호\(n\)가 수령자\(acceptor\)가 기존에 갖고 있던 minProposal 보다 작다면\(n &lt; minProposal\) 지금 온 제안은 거절**당한다. **반대로 minProposal보다 크거나 같다면\(n &gt;= minProposal\) 수령자\(acceptor\)는 제안을 인정\(accept\)**하게 된다. 인정\(accept\)한다는 건 **받아들인 제안의 제안번호와 값을 기억**한다는 것이다\(acceptedProposal = minProposal = n, acceptedValue = value\).
 
+![](/assets/12.PNG)
 
-
-... \(작성 미완료\)
+수령자\(acceptor\)가 요청\(request\)를 받아들이든 말든, 결국 수령자는 minPropsoal을 반환하게 된다. 제안자는 클러스터 내 대다수의 수령자로부터 응답이 올 때까지 기다린다. 대다수의 수령자로부터 응답을 받으면, 제안자는 보냈던 요청이 거절당했는지 확인하는 작업을 진행한다\(result &gt; n ? goto\(1\) : chosen\). 처음 보냈던 제안 번호보다 result가 크다면, 제안자가 보낸 제안이 거절당했다는 뜻이므로 제안자는 1번 과정부터 다시 진행하는 절차를 밟아야 한다. 
 
 ### 4.1. 발생 가능한 상황\(1\)
 
