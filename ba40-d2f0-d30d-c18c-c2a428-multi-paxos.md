@@ -226,3 +226,17 @@ Prepare를 하는 두번째 이유인 로그 항목의 값에 대해 알아내�
 
 이상으로 Paxos lecture의 강의 정리를 모두 마친다. Basic 팍소스는 Wise Cow가 Multi 팍소스는 Bookstore3가 작성을 담당했다.
 
+
+
+---
+
+### 출처
+
+Kernel of Linux: http://olc.oss.kr/lec/detail.jsp?lec\_idx=35
+
+At most once & Exactly once: https://stackoverflow.com/questions/13566869/at-most-once-and-exactly-once
+
+etc: [https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8](https://en.wikipedia.org/wiki/Main_Page)
+
+
+
